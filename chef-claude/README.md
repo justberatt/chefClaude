@@ -1,9 +1,9 @@
-# Chef Claude
+# Chef Claude - AI recipe generator
 
 The first interactive React App in the course (@Scrimba, React Basics, Section 3).
 It is a recipes app. One that will generate a recipe with the user-given ingredients.
 
-1. In the beginning, youwill be introduces will just an input field and an 'Add ingredient' button.(check photo)
+1. In the beginning, you will be introduced with just an input field and an 'Add ingredient' button.(check photo)
 
 ![This is how the app will look like on first load.](src/assets/images/app-phase1.png)
 
@@ -11,6 +11,6 @@ It is a recipes app. One that will generate a recipe with the user-given ingredi
 
 ![This is how the app will look like after you add the ingredients](src/assets/images/app-phase2.png)
 
-3. Finally, after clicking the 'get recipe' button, the app will return a recipe along with the instructions on how to prepare it.
+3. Finally, after clicking the 'get recipe' button, the app will take the ingredients, will give to Claude AI as a prompt, and return a recipe along with the instructions on how to prepare it.
 
 ![This is hwo the app will look like after it genrates the recipe](src/assets/images/app-phase3.png)
