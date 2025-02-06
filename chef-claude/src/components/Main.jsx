@@ -7,21 +7,21 @@ const Main = () => {
         <li key={ingredient}>{ingredient}</li>
     ))
 
-    const getIngredient = (formData) => {
+    function addIngredient(formData) {
         const newIngredient = formData.get("ingredient") // "ingredient" is the 'name' attr. in the form
         setIngredients(prevIngredients => [...prevIngredients, newIngredient])
     }
 
     return (
         <main>
-            <form className="add-ingredient-form" action={getIngredient}>
+            <form action={addIngredient} className="add-ingredient-form">
                 <input 
                     type="text"
                     placeholder="e.g. oregano"
-                    aria-label='Add ingredients'
+                    aria-label='Add ingredient'
                     name="ingredient"
                 />
-                <button>Add ingredients</button>
+                <button>Add ingredient</button>
             </form>
             <ul>
                 {ingredientsList}
