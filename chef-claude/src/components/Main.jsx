@@ -7,16 +7,14 @@ const Main = () => {
         <li key={ingredient}>{ingredient}</li>
     ))
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        const formData = new FormData(e.currentTarget)
+    const getIngredient = (formData) => {
         const newIngredient = formData.get("ingredient") // "ingredient" is the 'name' attr. in the form
         setIngredients(prevIngredients => [...prevIngredients, newIngredient])
     }
 
     return (
         <main>
-            <form className="add-ingredient-form" onSubmit={handleSubmit}>
+            <form className="add-ingredient-form" action={getIngredient}>
                 <input 
                     type="text"
                     placeholder="e.g. oregano"
