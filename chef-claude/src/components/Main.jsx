@@ -1,13 +1,21 @@
 import React from 'react'
 import IngredientsList from './IngredientsList';
 import ClaudeRecipe from './ClaudeRecipe';
+import { getRecipeFromMistral } from "../ai"
 
 const Main = () => {
-    const [ ingredients, setIngredients ] = React.useState([]);
+    const [ ingredients, setIngredients ] = React.useState([])
+    const [recipe, setRecipe] = React.useState('') // Store the AI-gnerated recipe
 
-    const [recipeShown, setRecipeShown] = React.useState(false)
-    const handleGetRecipeClick = () => {
-        setRecipeShown(true)
+    const getRecipe = async () => {
+        if(ingredients.length < 4) return // Ensure enough ingredients
+        try{
+            const fetchedRecipe = await getRecipeFromMistral(ingredients)
+            setRecipe(fetchedRecipe || "Failed to fetch recipe.")
+        } catch (error) {
+            console.error("Error fetching recipe:", error);
+            setRecipe("Error fetching recipe. Please try again.");
+        }
     }
 
     function addIngredient(formData) {
@@ -28,12 +36,9 @@ const Main = () => {
             </form>
             {
                 ingredients.length > 0 &&
-                <IngredientsList ingredients={ingredients} handleGetRecipeClick={handleGetRecipeClick}/>
+                <IngredientsList ingredients={ingredients} getRecipe={getRecipe}/>
             }
-            {
-                recipeShown &&
-                <ClaudeRecipe />
-            }
+            { recipe &&  <ClaudeRecipe recipe={recipe} /> }
         </main>
     )
 }
