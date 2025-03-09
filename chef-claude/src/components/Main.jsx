@@ -6,6 +6,7 @@ import { getRecipeFromMistral } from "../ai"
 const Main = () => {
     const [ ingredients, setIngredients ] = React.useState([])
     const [recipe, setRecipe] = React.useState('') // Store the AI-gnerated recipe
+    const recipeSection = React.useRef(null)
 
     const getRecipe = async () => {
         if(ingredients.length < 4) return // Ensure enough ingredients
@@ -36,7 +37,10 @@ const Main = () => {
             </form>
             {
                 ingredients.length > 0 &&
-                <IngredientsList ingredients={ingredients} getRecipe={getRecipe}/>
+                <IngredientsList
+                    ref={recipeSection}
+                    ingredients={ingredients}
+                    getRecipe={getRecipe}/>
             }
             { recipe &&  <ClaudeRecipe recipe={recipe} /> }
         </main>
