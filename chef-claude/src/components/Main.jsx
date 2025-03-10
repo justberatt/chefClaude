@@ -8,6 +8,12 @@ const Main = () => {
     const [recipe, setRecipe] = React.useState('') // Store the AI-gnerated recipe
     const recipeSection = React.useRef(null)
 
+    React.useEffect(() => {
+        if (recipe && recipeSection.current) {
+            recipeSection.current.scrollIntoView()
+        }
+    }, [recipe])
+
     const getRecipe = async () => {
         if(ingredients.length < 4) return // Ensure enough ingredients
         try{
